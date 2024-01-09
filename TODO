@@ -1,9 +1,16 @@
 1. register, login form errorlari chiqishi
 2. Blogni text fieldini ckeditorga otkazish kk
+3. modellarga rasmni qoshish
+4. blog list pagination
+5. shop
 
 
+
+
+4. class based views
+django resized
 
 
 
 Commentni
-text mptt
+django mptt

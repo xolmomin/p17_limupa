@@ -19,6 +19,9 @@ class Blog(Model):
     updated_at = DateTimeField(auto_now=True)
     created_at = DateTimeField(auto_now_add=True)
 
+    def count_comment(self):
+        return self.comment_set.count()
+
 
 class Comment(Model):
     text = CharField(max_length=255)
@@ -26,4 +29,3 @@ class Comment(Model):
     author = ForeignKey('auth.User', CASCADE, 'comments')
     updated_at = DateTimeField(auto_now=True)
     created_at = DateTimeField(auto_now_add=True)
-

@@ -2,18 +2,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from apps.forms import RegisterForm
+from apps.models import Blog
 
 
 def blog_list_page(request):
     context = {
-        'blogs': []
+        'blogs': Blog.objects.all()
     }
     return render(request, 'apps/blogs/blog-list.html', context)
 
 
-def blog_detail_page(request):
+def blog_detail_page(request, pk):
     context = {
-        'blogs': []
+        'blog': Blog.objects.filter(pk=pk).first()
     }
     return render(request, 'apps/blogs/blog-detail.html', context)
 

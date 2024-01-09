@@ -112,11 +112,12 @@
                                 </div>
                                 <div class="li-blog-content">
                                     <div class="li-blog-details">
-                                        <h3 class="li-blog-heading pt-25"><a href="#">The Biggest Collection For Digital
-                                            Product</a></h3>
+                                        <h3 class="li-blog-heading pt-25">
+                                            <a href="#">{{ blog.name }}</a>
+                                        </h3>
                                         <div class="li-blog-meta">
-                                            <a class="author" href="#"><i class="fa fa-user"></i>Admin</a>
-                                            <a class="comment" href="#"><i class="fa fa-comment-o"></i> 3 comment</a>
+                                            <a class="author" href="#"><i class="fa fa-user"></i>{{ blog.author.first_name }}</a>
+                                            <a class="comment" href="#"><i class="fa fa-comment-o"></i> {{ blog.count_comment }} comment</a>
                                             <a class="post-time" href="#"><i class="fa fa-calendar"></i> 25 nov 2018</a>
                                         </div>
                                         <p>Donec vitae hendrerit arcu, sit amet faucibus nisl. Cras pretium arcu ex.
