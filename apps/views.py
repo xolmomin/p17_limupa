@@ -2,19 +2,20 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from apps.forms import RegisterForm
-from apps.models import Blog
+from apps.models import Blog, Category
 
 
 def blog_list_page(request):
     context = {
-        'blogs': Blog.objects.all()
+        'blogs': Blog.objects.all().order_by('-created_at')
     }
     return render(request, 'apps/blogs/blog-list.html', context)
 
 
 def blog_detail_page(request, pk):
     context = {
-        'blog': Blog.objects.filter(pk=pk).first()
+        'blog': Blog.objects.filter(pk=pk).first(),
+        'categories': Category.objects.all()
     }
     return render(request, 'apps/blogs/blog-detail.html', context)
 

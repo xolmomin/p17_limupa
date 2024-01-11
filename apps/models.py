@@ -1,21 +1,30 @@
 from django.db.models import Model, TextField, CharField, CASCADE, DateTimeField, IntegerField, ForeignKey, \
-    ManyToManyField
+    ManyToManyField, ImageField
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Category(Model):
     name = CharField(max_length=255)
 
+    def count_blogs(self) -> int:
+        return self.blog_set.count()
+
 
 class Tag(Model):
     name = CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
 
 
 class Blog(Model):
     name = CharField(max_length=255)
     author = ForeignKey('auth.User', CASCADE, 'blogs')
-    category = ForeignKey('apps.Category', on_delete=CASCADE)
+    category = ForeignKey('apps.Category', CASCADE)
+    image = ImageField(default='blog/default.png', upload_to='blog/images/')
     tags = ManyToManyField('apps.Tag')
-    text = TextField(blank=True, null=True)
+    text = CKEditor5Field(blank=True, null=True, config_name='extends')
+
     updated_at = DateTimeField(auto_now=True)
     created_at = DateTimeField(auto_now_add=True)
 
