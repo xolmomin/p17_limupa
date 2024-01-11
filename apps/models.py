@@ -1,6 +1,11 @@
+from django.contrib.auth.models import AbstractUser
 from django.db.models import Model, TextField, CharField, CASCADE, DateTimeField, IntegerField, ForeignKey, \
-    ManyToManyField, ImageField
+    ManyToManyField, ImageField, OneToOneField
 from django_ckeditor_5.fields import CKEditor5Field
+
+
+class User(AbstractUser):
+    image = ImageField(upload_to='users/images')
 
 
 class Category(Model):
@@ -19,7 +24,7 @@ class Tag(Model):
 
 class Blog(Model):
     name = CharField(max_length=255)
-    author = ForeignKey('auth.User', CASCADE, 'blogs')
+    author = ForeignKey('apps.User', CASCADE, 'blogs')
     category = ForeignKey('apps.Category', CASCADE)
     image = ImageField(default='blog/default.png', upload_to='blog/images/')
     tags = ManyToManyField('apps.Tag')
@@ -35,6 +40,6 @@ class Blog(Model):
 class Comment(Model):
     text = CharField(max_length=255)
     blog = ForeignKey('apps.Blog', CASCADE)
-    author = ForeignKey('auth.User', CASCADE, 'comments')
+    author = ForeignKey('apps.User', CASCADE, 'comments')
     updated_at = DateTimeField(auto_now=True)
     created_at = DateTimeField(auto_now_add=True)

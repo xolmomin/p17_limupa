@@ -1,18 +1,22 @@
 1. register, login form errorlari chiqishi
 2. Blogni text fieldini ckeditorga otkazish kk ✅
 3. modellarga rasmni qoshish ✅
-4. blog list pagination
+4. blog list pagination (5 tadan)
 5. shop
 6. Blog Archive
+7. class based views ✅
+8. model Meta
+9. User set default image (default.png)
+10. django resized (pip install django-resized)
 
 
-
-
-
-4. class based views
-django resized
-
-
-
-Commentni
+commentni
 django mptt
+
+
+blog list pagination
+model Meta
+class based views
+model class Meta
+User set default image
+django resized
