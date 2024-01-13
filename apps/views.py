@@ -1,8 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, DetailView, ListView, CreateView, FormView
+from django.views.generic import TemplateView, DetailView, ListView, FormView
 
 from apps.forms import RegisterForm
 from apps.mixins import NotLoginRequiredMixin
@@ -19,6 +17,7 @@ class BlogDetailView(DetailView):
     queryset = Blog.objects.all()
     template_name = 'apps/blogs/blog-detail.html'
     pk_url_kwarg = 'pk'
+    context_object_name = 'blog'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,6 +32,7 @@ class IndexView(TemplateView):
 class CustomLoginView(NotLoginRequiredMixin, LoginView):
     template_name = 'apps/login.html'
     next_page = 'index_page'
+
 
 
 class RegisterFormView(FormView):

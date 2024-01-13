@@ -6,7 +6,7 @@
 6. Blog Archive
 7. class based views ✅
 8. model Meta
-9. User set default image (default.png)
+9. User set default image (default.png) ✅
 10. django resized (pip install django-resized)
 
 
@@ -20,3 +20,9 @@ class based views
 model class Meta
 User set default image
 django resized
+
+
+TASK
+1. user set image in django admin page
+2. commentdagi date ni togrilash kk
+

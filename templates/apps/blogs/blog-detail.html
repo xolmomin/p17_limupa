@@ -124,9 +124,9 @@
                                         {{ blog.text|safe }}
                                         <div class="li-tag-line">
                                             <h4>tag:</h4>
-                                            <a href="#">Headphones</a>,
-                                            <a href="#">Video Games</a>,
-                                            <a href="#">Wireless Speakers</a>
+                                            {% for tag in blog.tags.all %}
+                                                <a href="#">{{ tag.name }}</a>,
+                                            {% endfor %}
                                         </div>
                                         <div class="li-blog-sharing text-center pt-30">
                                             <h4>share this post:</h4>
@@ -140,50 +140,42 @@
                             </div>
                             <!-- Begin Li's Blog Comment Section -->
                             <div class="li-comment-section">
-                                <h3>03 comment</h3>
+                                <h3>{{ blog.count_comment }} comment</h3>
                                 <ul>
-                                    <li>
-                                        <div class="author-avatar pt-15">
-                                            <img src="{% static 'apps/images/product-details/user.png' %}" alt="User">
-                                        </div>
-                                        <div class="comment-body pl-15">
-                                            <span class="reply-btn pt-15 pt-xs-5"><a href="#">reply</a></span>
-                                            <h5 class="comment-author pt-15">admin</h5>
-                                            <div class="comment-post-date">
-                                                20 nov, 2018 at 9:30pm
+                                    {% for comment in blog.comment_set.all %}
+                                        <li>
+                                            <div class="author-avatar pt-15">
+                                                <img src="{{ comment.author.image.url }}" alt="User">
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores
-                                                adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
-                                        </div>
-                                    </li>
-                                    <li class="comment-children">
-                                        <div class="author-avatar pt-15">
-                                            <img src="{% static 'apps/images/product-details/admin.png' %}" alt="Admin">
-                                        </div>
-                                        <div class="comment-body pl-15">
-                                            <span class="reply-btn pt-15 pt-xs-5"><a href="#">reply</a></span>
-                                            <h5 class="comment-author pt-15">admin</h5>
-                                            <div class="comment-post-date">
-                                                20 nov, 2018 at 9:30pm
+                                            <div class="comment-body pl-15">
+                                                <span class="reply-btn pt-15 pt-xs-5"><a href="#">reply</a></span>
+                                                <h5 class="comment-author pt-15">{{ comment.author.first_name }}</h5>
+                                                <div class="comment-post-date">
+                                                    {#                                                    20 nov, 2018 at 9:30pm#}
+                                                    {{ comment.created_at|date:"d b, Y f a" }}
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores
+                                                    adipisci optio ex, laboriosam facilis non pariatur itaque illo
+                                                    sunt?</p>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores
-                                                adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="author-avatar pt-15">
-                                            <img src="{% static 'apps/images/product-details/admin.png' %}" alt="Admin">
-                                        </div>
-                                        <div class="comment-body pl-15">
-                                            <span class="reply-btn pt-15 pt-xs-5"><a href="#">reply</a></span>
-                                            <h5 class="comment-author pt-15">admin</h5>
-                                            <div class="comment-post-date">
-                                                20 nov, 2018 at 9:30pm
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores
-                                                adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    {% endfor %}
+
+                                    {#                                    <li class="comment-children">#}
+                                    {#                                        <div class="author-avatar pt-15">#}
+                                    {#                                            <img src="{% static 'apps/images/product-details/admin.png' %}" alt="Admin">#}
+                                    {#                                        </div>#}
+                                    {#                                        <div class="comment-body pl-15">#}
+                                    {#                                            <span class="reply-btn pt-15 pt-xs-5"><a href="#">reply</a></span>#}
+                                    {#                                            <h5 class="comment-author pt-15">admin</h5>#}
+                                    {#                                            <div class="comment-post-date">#}
+                                    {#                                                20 nov, 2018 at 9:30pm#}
+                                    {#                                            </div>#}
+                                    {#                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores#}
+                                    {#                                                adipisci optio ex, laboriosam facilis non pariatur itaque illo sunt?</p>#}
+                                    {#                                        </div>#}
+                                    {#                                    </li>#}
+
                                 </ul>
                             </div>
                             <!-- Li's Blog Comment Section End Here -->

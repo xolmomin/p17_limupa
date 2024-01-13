@@ -1,11 +1,12 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Model, TextField, CharField, CASCADE, DateTimeField, IntegerField, ForeignKey, \
-    ManyToManyField, ImageField, OneToOneField
+from django.db.models import Model, CharField, CASCADE, DateTimeField, ForeignKey, ManyToManyField, ImageField
 from django_ckeditor_5.fields import CKEditor5Field
+from django_resized import ResizedImageField
 
 
 class User(AbstractUser):
-    image = ImageField(upload_to='users/images')
+    image = ResizedImageField(size=[90, 90], crop=['middle', 'center'], upload_to='users/images',
+                              default='users/default.jpg')
 
 
 class Category(Model):
