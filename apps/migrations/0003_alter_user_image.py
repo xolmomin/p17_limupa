@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 keep_meta=True,
                 quality=75,
                 scale=0.5,
-                size=[90, 90],
+                size=[200, 200],
                 upload_to="users/images",
             ),
         ),

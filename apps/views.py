@@ -14,7 +14,7 @@ class BlogListView(ListView):
 
 
 class BlogDetailView(DetailView):
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.order_by('-created_at')
     template_name = 'apps/blogs/blog-detail.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'blog'
@@ -22,6 +22,7 @@ class BlogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['recent_blogs'] = self.get_queryset()[:3]
         return context
 
 
@@ -32,7 +33,6 @@ class IndexView(TemplateView):
 class CustomLoginView(NotLoginRequiredMixin, LoginView):
     template_name = 'apps/login.html'
     next_page = 'index_page'
-
 
 
 class RegisterFormView(FormView):

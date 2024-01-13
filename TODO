@@ -24,5 +24,15 @@ django resized
 
 TASK
 1. user set image in django admin page
-2. commentdagi date ni togrilash kk
+2. adminkada userlarni rasmi chiqishi kk
+3. commentdagi date ni togrilash kk
 
+
+
+4. user eski rasmini ochirish (yangi qoshganda)
+5. blog detail page da BLOG ARCHIVES ni oylik chiqarish
+6. blog detail page da tags ni chiqarish
+
+
+https://books.agiliq.com/projects/django-orm-cookbook/en/latest/index.html#
+https://books.agiliq.com/projects/django-admin-cookbook/en/latest/

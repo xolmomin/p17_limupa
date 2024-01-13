@@ -1,4 +1,6 @@
+from django.conf import urls
 from django.contrib.auth.views import LogoutView
+from django.shortcuts import render
 from django.urls import path, include
 
 from apps.views import IndexView, CustomLoginView, RegisterFormView, BlogDetailView, BlogListView
@@ -13,3 +15,9 @@ urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ]
 
+
+def page_404(request, *args, **kwargs):
+    return render(request, 'apps/404.html', status=404)
+
+
+urls.handler404 = 'apps.urls.page_404'

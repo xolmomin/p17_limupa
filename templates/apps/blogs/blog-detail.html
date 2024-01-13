@@ -47,42 +47,20 @@
                         </div>
                         <div class="li-blog-sidebar">
                             <h4 class="li-blog-sidebar-title">Recent Post</h4>
-                            <div class="li-recent-post pb-30">
-                                <div class="li-recent-post-thumb">
-                                    <a href="blog-details.html">
-                                        <img class="img-full" src="{% static 'apps/images/product/small-size/3.jpg' %}"
-                                             alt="Li's Product Image">
-                                    </a>
+
+                            {% for recent_blog in recent_blogs %}
+                                <div class="li-recent-post pb-30">
+                                    <div class="li-recent-post-thumb">
+                                        <a href="blog-details.html">
+                                            <img class="img-full" src="{{ recent_blog.image.url }}">
+                                        </a>
+                                    </div>
+                                    <div class="li-recent-post-des">
+                                        <span><a href="blog-details.html">{{ recent_blog.name }}</a></span>
+                                        <span class="li-post-date">{{ recent_blog.created_at|date:"d.m.Y" }}</span>
+                                    </div>
                                 </div>
-                                <div class="li-recent-post-des">
-                                    <span><a href="blog-details.html">First Blog Post</a></span>
-                                    <span class="li-post-date">25.11.2018</span>
-                                </div>
-                            </div>
-                            <div class="li-recent-post pb-30">
-                                <div class="li-recent-post-thumb">
-                                    <a href="blog-details.html">
-                                        <img class="img-full" src="{% static 'apps/images/product/small-size/2.jpg' %}"
-                                             alt="Li's Product Image">
-                                    </a>
-                                </div>
-                                <div class="li-recent-post-des">
-                                    <span><a href="blog-details.html">First Blog Post</a></span>
-                                    <span class="li-post-date">25.11.2018</span>
-                                </div>
-                            </div>
-                            <div class="li-recent-post pb-30">
-                                <div class="li-recent-post-thumb">
-                                    <a href="blog-details.html">
-                                        <img class="img-full" src="{% static 'apps/images/product/small-size/5.jpg' %}"
-                                             alt="Li's Product Image">
-                                    </a>
-                                </div>
-                                <div class="li-recent-post-des">
-                                    <span><a href="blog-details.html">First Blog Post</a></span>
-                                    <span class="li-post-date">25.11.2018</span>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                         <div class="li-blog-sidebar">
                             <h4 class="li-blog-sidebar-title">Tags</h4>
@@ -152,11 +130,9 @@
                                                 <h5 class="comment-author pt-15">{{ comment.author.first_name }}</h5>
                                                 <div class="comment-post-date">
                                                     {#                                                    20 nov, 2018 at 9:30pm#}
-                                                    {{ comment.created_at|date:"d b, Y f a" }}
+                                                    {{ comment.created_at|date:"d b, Y \a\t f a" }}
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores
-                                                    adipisci optio ex, laboriosam facilis non pariatur itaque illo
-                                                    sunt?</p>
+                                                <p>{{ comment.text }}</p>
                                             </div>
                                         </li>
                                     {% endfor %}
