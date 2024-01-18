@@ -1,9 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Model, CharField, CASCADE, DateTimeField, ForeignKey, ManyToManyField, ImageField, \
-    FloatField, PositiveIntegerField
+    FloatField, PositiveIntegerField, UUIDField
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
-
+import uuid
 
 class CreatedBaseModel(Model):
     updated_at = DateTimeField(auto_now=True)
@@ -60,3 +60,17 @@ class Product(CreatedBaseModel):
 class ProductImage(Model):
     image = ImageField(upload_to='products/images/')
     product = ForeignKey('apps.Product', CASCADE)
+
+
+class Blog2(CreatedBaseModel):
+    id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = CharField(max_length=255)
+    author = ForeignKey('apps.User', CASCADE, )
+    category = ForeignKey('apps.Category', CASCADE)
+    image = ImageField(default='blog/default.png', upload_to='blog/images/')
+    tags = ManyToManyField('apps.Tag')
+    text = CKEditor5Field(blank=True, null=True, config_name='extends')
+
+    def count_comment(self):
+        return 2
+

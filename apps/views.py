@@ -4,20 +4,24 @@ from django.views.generic import TemplateView, DetailView, ListView, FormView
 
 from apps.forms import RegisterForm
 from apps.mixins import NotLoginRequiredMixin
-from apps.models import Blog, Category
+from apps.models import Blog, Category, Blog2
 
 
 class BlogListView(ListView):
+    paginate_by = 5
     template_name = 'apps/blogs/blog-list.html'
-    queryset = Blog.objects.order_by('-created_at')
+    queryset = Blog2.objects.order_by('-id')
     context_object_name = 'blogs'
 
 
 class BlogDetailView(DetailView):
-    queryset = Blog.objects.order_by('-created_at')
+    queryset = Blog2.objects.order_by('-created_at')
     template_name = 'apps/blogs/blog-detail.html'
     pk_url_kwarg = 'pk'
     context_object_name = 'blog'
+
+    def get_object(self, queryset=None):
+        return super().get_object(queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

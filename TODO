@@ -1,38 +1,18 @@
-1. register, login form errorlari chiqishi
-2. Blogni text fieldini ckeditorga otkazish kk ✅
-3. modellarga rasmni qoshish ✅
-4. blog list pagination (5 tadan)
-5. shop
-6. Blog Archive
-7. class based views ✅
-8. model Meta
-9. User set default image (default.png) ✅
-10. django resized (pip install django-resized)
+TODO
 
-
-commentni
-django mptt
-
-
-blog list pagination
-model Meta
-class based views
-model class Meta
-User set default image
-django resized
-
-
-TASK
-1. user set image in django admin page
-2. adminkada userlarni rasmi chiqishi kk
-3. commentdagi date ni togrilash kk
+1. pagination ✅
+2. UUID ✅
+3. custom admin page (jazzmin) ✅
+4. (support bosganda tlg ga otishi kk) ✅
+5. Search
+6. profile page
+7. Newsletter (sending email)[celery]
+8. cart & like
 
 
 
-4. user eski rasmini ochirish (yangi qoshganda)
-5. blog detail page da BLOG ARCHIVES ni oylik chiqarish
-6. blog detail page da tags ni chiqarish
+https://forum.djangoproject.com/t/django-jazzmin-logout/26110
 
 
-https://books.agiliq.com/projects/django-orm-cookbook/en/latest/index.html#
-https://books.agiliq.com/projects/django-admin-cookbook/en/latest/
+
+
