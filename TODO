@@ -21,9 +21,9 @@ https://forum.djangoproject.com/t/django-jazzmin-logout/26110
 
 
 
+1. celery dagi natijalarni postgresga yozish
+2. flower (monitor)
 
-
-
-
+python manage.py migrate django_celery_results
 
 
