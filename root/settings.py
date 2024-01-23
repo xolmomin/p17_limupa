@@ -59,7 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "root.wsgi.application"
 
-
 AUTH_USER_MODEL = 'apps.User'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -113,6 +112,28 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# LOGGING = {
+#     'version': 1,
+#     'filters': {
+#         'require_debug_true': {
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         }
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'filters': ['require_debug_true'],
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'level': 'DEBUG',
+#             'handlers': ['console'],
+#         }
+#     }
+# }
 
 customColorPalette = [
     {
@@ -210,7 +231,6 @@ DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
-
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Library Admin",
@@ -257,7 +277,7 @@ JAZZMIN_SETTINGS = {
     "topmenu_links": [
 
         # Url that gets reversed (Permissions can be added)
-        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
         {"name": "Support", "url": "", "new_window": True},
@@ -353,3 +373,22 @@ JAZZMIN_SETTINGS = {
 }
 
 LOGOUT_REDIRECT_URL = '/admin'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'xolmomin@gmail.com'
+EMAIL_HOST_PASSWORD = 'ociwfmayunenrmji'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESU
+
+
+# MQ
+# redis
+# rabbitmq
+
+
+
+# docker run -p 6379:6379 -it redis/redis-stack:latest

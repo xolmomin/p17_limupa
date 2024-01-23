@@ -5,8 +5,10 @@ TODO
 3. custom admin page (jazzmin) ✅
 4. (support bosganda tlg ga otishi kk) ✅
 5. Search
+5.5 user activation by email
 6. profile page
 7. Newsletter (sending email)[celery]
+7.5 user registration (activation code)
 8. cart & like
 9. qr code
 10. server

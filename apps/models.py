@@ -1,9 +1,14 @@
+import time
+
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Model, CharField, CASCADE, DateTimeField, ForeignKey, ManyToManyField, ImageField, \
     FloatField, PositiveIntegerField, UUIDField
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
 import uuid
+
+from .tasks import task_send_email
+
 
 class CreatedBaseModel(Model):
     updated_at = DateTimeField(auto_now=True)
@@ -40,6 +45,14 @@ class Blog(CreatedBaseModel):
     tags = ManyToManyField('apps.Tag')
     text = CKEditor5Field(blank=True, null=True, config_name='extends')
 
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        emails: list = User.objects.values_list('email', flat=True)
+        start = time.time()
+        task_send_email.delay("Yangi blog qoshildi", self.name, list(emails))
+        end = time.time()
+        print(end - start, ' s -- ketgan vaqt')
+
     def count_comment(self):
         return self.comment_set.count()
 
@@ -60,17 +73,3 @@ class Product(CreatedBaseModel):
 class ProductImage(Model):
     image = ImageField(upload_to='products/images/')
     product = ForeignKey('apps.Product', CASCADE)
-
-
-class Blog2(CreatedBaseModel):
-    id = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = CharField(max_length=255)
-    author = ForeignKey('apps.User', CASCADE, )
-    category = ForeignKey('apps.Category', CASCADE)
-    image = ImageField(default='blog/default.png', upload_to='blog/images/')
-    tags = ManyToManyField('apps.Tag')
-    text = CKEditor5Field(blank=True, null=True, config_name='extends')
-
-    def count_comment(self):
-        return 2
-
