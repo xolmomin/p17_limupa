@@ -392,3 +392,8 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 
 # docker run -p 6379:6379 -it redis/redis-stack:latest
+
+
+# pip install psycopg2-binary
+# pip install redis
+# pip install celery[redis]
