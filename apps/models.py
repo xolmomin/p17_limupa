@@ -2,10 +2,9 @@ import time
 
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Model, CharField, CASCADE, DateTimeField, ForeignKey, ManyToManyField, ImageField, \
-    FloatField, PositiveIntegerField, UUIDField
+    FloatField, PositiveIntegerField
 from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
-import uuid
 
 from .tasks import task_send_email
 

@@ -1,6 +1,10 @@
 import os.path
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
 
+
+load_dotenv('.env')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'apps.apps.AppsConfig',
     'django_ckeditor_5',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -63,12 +68,31 @@ AUTH_USER_MODEL = 'apps.User'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / 'db.sqlite3'
+#     }
+# }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": 'p17_group_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '1',
+#         'HOST': 'localhost',
+#         'PORT': 5431,
+#     }
+# }
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / 'db.sqlite3'
-    }
+    'default': dj_database_url.config(default=os.getenv('DB_URL'))
 }
+
+
+# postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]`
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -382,18 +406,5 @@ EMAIL_HOST_USER = 'xolmomin@gmail.com'
 EMAIL_HOST_PASSWORD = 'ociwfmayunenrmji'
 
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
-# CELERY_RESU
-
-
-# MQ
-# redis
-# rabbitmq
-
-
-
-# docker run -p 6379:6379 -it redis/redis-stack:latest
-
-
-# pip install psycopg2-binary
-# pip install redis
-# pip install celery[redis]
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_EXTENDED = True
